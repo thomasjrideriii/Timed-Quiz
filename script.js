@@ -18,47 +18,47 @@ var answer4 = document.getElementById("answer4");
 
 var question1 = {
     "question text": "What is Han's record for the Kessel run in the 'Millenium Falcon'?",
-    "answer1": "12 Parsecs",
-    "answer2": "15 Parsecs",
-    "answer3": "8 Parsecs",
+    "answer1": "8 Parsecs",
+    "answer2": "12 Parsecs",
+    "answer3": "15 Parsecs",
     "answer4": "20 Parsecs",
-    "correct answer": 1
+    "correct answer": 2
 }
 
 var question2 = {
-    "question text": " ",
-    "answer1": "",
-    "answer2": "",
-    "answer3": "",
-    "answer4": "",
-    "correct answer": 1
+    "question text": "Before Count Dooku, how many other Jedi Mastersleft the order?",
+    "answer1": "12",
+    "answer2": "13",
+    "answer3": "19",
+    "answer4": "25",
+    "correct answer": 3
 }
 
 var question3 = {
-    "question text": " ",
-    "answer1": "",
-    "answer2": "",
-    "answer3": "",
-    "answer4": "",
-    "correct answer": 1
+    "question text": "What is the designation of the army of clones lead by General Kenobi and General Skywalker?",
+    "answer1": "The 201st",
+    "answer2": "The 501st",
+    "answer3": "The 701st",
+    "answer4": "The 1001st",
+    "correct answer": 2
 }
 
 var question4 = {
-    "question text": " ",
-    "answer1": "",
-    "answer2": "",
-    "answer3": "",
-    "answer4": "",
+    "question text": "What is the name of Darth Vader's flagship Star Dreadnought?",
+    "answer1": "Executor",
+    "answer2": "Adjudicator",
+    "answer3": "Inexorable",
+    "answer4": "Aggresive Negotiations",
     "correct answer": 1
 }
 
 var question5 = {
-    "question text": " ",
-    "answer1": "",
-    "answer2": "",
-    "answer3": "",
-    "answer4": "",
-    "correct answer": 1
+    "question text": "What was the race won by Anakin Skywalker to win his freedom?",
+    "answer1": "The Tatooine Cup",
+    "answer2": "The Mos Eisly 100",
+    "answer3": "The Hutt Grand Prix",
+    "answer4": "The Bantha Classic",
+    "correct answer": 4
 }
 
 var timerInterval
@@ -67,7 +67,9 @@ var questionArray = [
     question1, question2, question3, question4, question5
 ]
 
-var questionCurrent = 0;
+var questionCurrent = -1;
+
+var highscores = []
 
 function startTimer() {
     timerNum.textContent = parseInt(questionArray.length * 15);
@@ -75,7 +77,8 @@ function startTimer() {
 
         if (parseInt(timerNum.textContent) <= 0) {
             clearInterval(timerInterval);
-            alert("Game Over!")
+            gameOver()
+            return
         }
             timerNum.textContent = (timerNum.textContent - 1);
             
@@ -93,10 +96,11 @@ function changeScreen() {
 }
 
 function nextQuestion() {
+    questionCurrent++;
     if (questionCurrent === questionArray.length) {
         clearInterval(timerInterval);
-        alert("You Win!\n\You're score is " + timerNum.textContent);
-
+        win();
+        return
     }
     
     questionNum.textContent = questionCurrent + 1;
@@ -105,7 +109,7 @@ function nextQuestion() {
     answer2.textContent = questionArray[questionCurrent]["answer2"];
     answer3.textContent = questionArray[questionCurrent]["answer3"];
     answer4.textContent = questionArray[questionCurrent]["answer4"];
-    questionCurrent++;
+    
 }
 
 function selectAnswer() {
@@ -126,6 +130,50 @@ function selectAnswer() {
         alert("Incorrect!");
         timerNum.textContent = (timerNum.textContent - 10)
         nextQuestion();
+    }
+}
+
+function gameOver() {
+    var tryagain = prompt("Game Over!\n\Would you like to try again?");
+
+    if (tryagain) {
+        startTimer
+    } else {
+        location.reload();
+    }
+}
+
+function win() {
+    var initials = prompt("You Win!\n\Your score is " + timerNum.textContent + "\n\Please Enter your initals to be added to the scoreboard!")
+
+    var storedHighScores = localStorage.getItem("highscores")
+    var score = timerNum.textContent
+    if (score < 10) {
+        score = "0" + score
+    }
+    if (score < 100) {
+        score = "0" + score
+    }
+
+    
+    highscores = JSON.parse(storedHighScores)
+    if (highscores === null) {
+        highscores = []
+    }
+
+    highscores.push(timerNum.textContent + " - " + initials)
+
+    highscores.sort()
+    console.log(highscores)
+    localStorage.setItem("highscores", JSON.stringify(highscores))    
+
+    var again = prompt("Would you like to try again?")
+
+    if (again) {
+        questionCurrent = -1;
+        startTimer
+    } else {
+        location.reload();
     }
 }
 

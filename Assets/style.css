@@ -68,6 +68,26 @@ body {
 }
 
 .answerBtn {
-    margin: 25px 40%;
-    width: 20%
+    margin: 12px 40%;
+    width: 20%;
+    font-size: 24px;
+    padding: 16px;
+    border-radius: 32px;
+}
+
+#highscoreList {
+    
+    text-align: center;
+    color: lime;
+}
+
+.score {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 16px;
+    width: 50%;
+}
+
+a {
+    color: #eee;
 }
