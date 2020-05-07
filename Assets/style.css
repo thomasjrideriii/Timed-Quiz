@@ -56,3 +56,18 @@ body {
     border-color: #eee;
     border-radius: 40px;
 }
+
+.question {
+    color: royalblue;
+    font-size: 24px;
+}
+
+.answerBox {
+    margin: 50px auto;
+    justify-content: center;
+}
+
+.answerBtn {
+    margin: 25px 40%;
+    width: 20%
+}
