@@ -1,0 +1,58 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+body {
+    background-image: url("stars.jpg")
+}
+
+.topbar {
+    background-color: #333;
+    padding: 10px;
+    width: 100%; 
+}
+
+#timer {
+    float: right;
+    color: #eee;
+}
+
+.hide {
+    display: none;
+
+}
+
+.center {
+    text-align: center;
+}
+
+.maintitle {
+    color: lightblue;
+    font-size: 48px;
+    font-weight: bolder;
+}
+
+.subtitle {
+    color: lightblue;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.promoText {
+    color: lime;
+    font-size: 24px;
+}
+
+.btnFrame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btnStart {
+    padding: 20px;
+    font-size: 30px;
+    background-color: #666;
+    border-color: #eee;
+    border-radius: 40px;
+}

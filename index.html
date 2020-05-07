@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Wars Quiz!</title>
+    <link rel="stylesheet" href="./Assets/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="highscores.html">View Highscores</a>
+      <div class="hide" id="timer">Time: <span id="countdownTimer"> </span></div>
+    </header>
+    <article id="startScreen">
+      <h1 class="maintitle center">
+        Think you're a true Star Wars know-it-all?
+      </h1>
+      <h2 class="subtitle center">Try your hand at this quiz!</h2>
+      <div class="btnFrame">
+          <button id="btnStart">START!</button>
+      </div>
+      <p class="center promoText">Press the start button to begin!</p>
+    </article>
+    <main id="quizBox" class="hide">
+      <h1 class="maintitle center">Question <span id="questionNumber"></span></h1>
+      <p class="center question" id="question">Is this where the question goes?</p>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
