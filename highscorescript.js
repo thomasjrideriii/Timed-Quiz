@@ -6,7 +6,6 @@ function init() {
 
     var storedHighScores = localStorage.getItem("highscores")
     highscores = JSON.parse(storedHighScores)
-    console.log(highscores)
 
     for (var i = 0; i < highscores.length; i++) {
         var score = highscores[i];

@@ -11,6 +11,8 @@ var questionNum = document.getElementById("questionNumber");
 
 var questionCont = document.getElementById("question");
 
+var checker = document.getElementById("checker");
+
 var answer1 = document.getElementById("answer1");
 var answer2 = document.getElementById("answer2");
 var answer3 = document.getElementById("answer3");
@@ -124,20 +126,22 @@ function selectAnswer() {
     console.log(correctAnswer)
 
     if (selectedAnswer === correctAnswer) {
-        alert("Correct!");
+        // alert("Correct!");
+        correct();
         nextQuestion();
     } else if (selectedAnswer |= null) {
-        alert("Incorrect!");
+        incorrect();
+        // alert("Incorrect!");
         timerNum.textContent = (timerNum.textContent - 10)
         nextQuestion();
     }
 }
 
 function gameOver() {
-    var tryagain = prompt("Game Over!\n\Would you like to try again?");
+    var tryagain = confirm("Game Over!\n\Would you like to try again?");
 
     if (tryagain) {
-        startTimer
+        location.reload();
     } else {
         location.reload();
     }
@@ -164,17 +168,39 @@ function win() {
     highscores.push(timerNum.textContent + " - " + initials)
 
     highscores.sort()
+    highscores.reverse()
     console.log(highscores)
     localStorage.setItem("highscores", JSON.stringify(highscores))    
 
-    var again = prompt("Would you like to try again?")
+    var again = confirm("Would you like to try again?")
 
     if (again) {
         questionCurrent = -1;
-        startTimer
+        location.reload();
     } else {
         location.reload();
     }
+}
+
+function correct() {
+
+    checker.textContent = "Correct!";
+
+    checker.setAttribute("style", "color: lime; border-style: solid, border-color: lime");
+    setTimeout(function() {
+        checker.setAttribute("style", " ");
+        checker.textContent = "";
+    }, 1000)
+}
+function incorrect() {
+
+    checker.textContent = "WRONG!";
+
+    checker.setAttribute("style", "color: red; border-style: solid, border-color: red");
+    setTimeout(function() {
+        checker.setAttribute("style", " ");
+        checker.textContent = "";
+    }, 1000)
 }
 
 btnStart.addEventListener("click", changeScreen)
